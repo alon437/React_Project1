@@ -4,7 +4,7 @@ import Menu from './components/MenuComponent';
 import {DISHES} from './components/shared/dishes';
 import { Component } from 'react';
 
-class App extends Component{
+class App extends Component {
   constructor (props)
   {
     super(props);
@@ -17,7 +17,7 @@ class App extends Component{
       return(
       <div>
       <Navbar dark color="primary">
-        <div className="container">
+        <div >
           <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
         </div>
       </Navbar>
