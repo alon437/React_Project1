@@ -7,7 +7,11 @@ class Details extends Component{
         this.state = {
             }
     }
-    render(){
+    render()
+    {
+      if(!this.props.details)
+        return ( <div> </div>);
+      
       const  dish =  this.props.details;
       const comments = dish.comments;
       console.log(comments)
@@ -22,15 +26,17 @@ class Details extends Component{
     } );
 
       return (
-        <div className = "box-details" key={dish.id} >
-            <div className = "box">
-                <div> <img className = "img-item" src={dish.image} alt= {dish.name}/> </div>
-                <div><h1> {dish.name}</h1></div>
-                <div><h5> {dish.description}</h5></div>
-            </div>
-            <div className = "box">
-                <div className= "box-comment">
-                    {box_comments}
+         <div className = "container">
+            <div className = "box-details" key={dish.id} >
+                <div className = "box">
+                    <div> <img className = "img-item" src={dish.image} alt= {dish.name}/> </div>
+                    <div><h1> {dish.name}</h1></div>
+                    <div><h5> {dish.description}</h5></div>
+                </div>
+                <div className = "box">
+                    <div className= "box-comment">
+                        {box_comments}
+                    </div>
                 </div>
             </div>
         </div>
