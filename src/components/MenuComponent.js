@@ -1,25 +1,30 @@
-import React , { Component } from 'react';
+import React  from 'react';
 
-class Menu extends Component{
-    constructor(props){
-        super(props);
-       
-    }
-
-    render(){
-        const menu = this.props.dishes.map( (dish) => {
-            return (
-                <div className = "item" key={dish.id} onClick = { () => this.props.onClick(dish.id)}>
+   
+function RenderMenuItem({dish , onClick})
+{
+    return (
+        <div className = "item" key={dish.id} onClick = { () => onClick(dish.id)}>
                     <div><h1> {dish.name}</h1></div>
                     <div><img className = "img-item" src={dish.image} alt= {dish.name}/></div>
-                </div>
-            );
-        } );
+        </div>
+    );
+}
+
+const Menu = (props) =>
+{
+    const menu = props.dishes.map( (dish) => {
         return (
-            <div className = "container">
-                {menu}
+            <div>
+                <RenderMenuItem dish = {dish} onClick = {props.onClick} />
             </div>
         );
-    }
+    } );
+    return (
+        <div className = "container">
+            {menu}
+        </div>
+    );
 }
+      
 export default Menu;

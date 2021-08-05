@@ -1,20 +1,19 @@
-import React , { Component } from 'react';
+import React  from 'react';
+   
+function RenderDetails({dish})
+{
+    return (
+        <div className = "box">
+                <div> <img className = "img-item" src={dish.image} alt= {dish.name}/> </div>
+                <div><h1> {dish.name}</h1></div>
+                <div><h5> {dish.description}</h5></div>
+        </div>
+    );
 
-
-class Details extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            }
-    }
-    render()
+}
+    function RenderComments({dish})
     {
-      if(!this.props.details)
-        return ( <div> </div>);
-      
-      const  dish =  this.props.details;
       const comments = dish.comments;
-      console.log(comments)
       const box_comments = comments.map( (comment) => {
         const d = new Date(comment.date)
         return (
@@ -24,23 +23,27 @@ class Details extends Component{
             </div>
         );
     } );
-
-      return (
-         <div className = "container">
-            <div className = "box-details" key={dish.id} >
-                <div className = "box">
-                    <div> <img className = "img-item" src={dish.image} alt= {dish.name}/> </div>
-                    <div><h1> {dish.name}</h1></div>
-                    <div><h5> {dish.description}</h5></div>
-                </div>
-                <div className = "box">
-                    <div className= "box-comment">
-                        {box_comments}
-                    </div>
-                </div>
+    return (
+        <div className = "box"> 
+            <div className= "box-comment">
+                {box_comments}
             </div>
         </div>
+    ); 
+}
+
+const Details = (props) =>
+{
+    if(!props.details)
+        return ( <div> </div>);
+
+    return (
+    <div className = "container">
+        <div className = "box-details" key={props.details.id} >
+            <RenderDetails dish ={props.details}/> 
+            <RenderComments dish = {props.details}/>    
+        </div>
+    </div>
     );
-    }
 }
 export default Details;
