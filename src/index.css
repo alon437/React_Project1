@@ -39,3 +39,16 @@
     flex-direction: column;
     margin-top: 10px;
 }
+
+.box-leader
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+
+}
+.box-leader-item
+{
+    padding: 10px;
+}

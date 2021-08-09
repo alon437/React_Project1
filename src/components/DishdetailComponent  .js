@@ -2,6 +2,7 @@ import React  from 'react';
    
 function RenderDetails({dish})
 {
+    console.log(dish)
     return (
         <div className = "box">
                 <div> <img className = "img-item" src={dish.image} alt= {dish.name}/> </div>
@@ -11,9 +12,8 @@ function RenderDetails({dish})
     );
 
 }
-    function RenderComments({dish})
+    function RenderComments({comments})
     {
-      const comments = dish.comments;
       const box_comments = comments.map( (comment) => {
         const d = new Date(comment.date)
         return (
@@ -34,14 +34,14 @@ function RenderDetails({dish})
 
 const Details = (props) =>
 {
-    if(!props.details)
+    if(!props.dish)
         return ( <div> </div>);
 
     return (
     <div className = "container">
-        <div className = "box-details" key={props.details.id} >
-            <RenderDetails dish ={props.details}/> 
-            <RenderComments dish = {props.details}/>    
+        <div className = "box-details" key={props.dish.id} >
+            <RenderDetails dish ={props.dish}/> 
+            <RenderComments comments = {props.comments}/>    
         </div>
     </div>
     );

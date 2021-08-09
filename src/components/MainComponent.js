@@ -10,6 +10,8 @@ import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import {Switch , Route , Redirect} from 'react-router-dom';
 import Contact from './ContactComponent';
+import Details from './DishdetailComponent  ';
+import About from './AboutComponent'
 
 class Main extends Component {
   constructor (props)
@@ -38,14 +40,26 @@ class Main extends Component {
           />
         );
       }
+
+
+      const DishWithId = ({match}) =>{
+          return (
+            <Details dish={this.state.dishes.filter( (dish)=> dish.id === parseInt(match.params.dishId,10) )[0]}
+            comments = {this.state.Comments.filter( (comment) => comment.dishId === parseInt(match.params.dishId,10) )}
+            />
+          );
+      }
+
       return(
       <div>
       <Header />
       <Switch>
         <Route path="/home" component = {HomePage} />
-        <Route exact path="/menu" component = {() => <Menu dishes = {this.state.dishes}/>} /> 
-        <Route exact path="/contactus" component = {Contact}/> 
-        <Redirect to="/home" />
+        <Route exact path="/menu" component = {() => <Menu dishes = {this.state.dishes}/>} />
+        <Route path="/menu/:dishId" component = {DishWithId} />  
+        <Route exact path="/contactus" component = {Contact}/>
+        <Route exact path="/aboutus" component = {() => <About leaders = {this.state.leaders}/>}/>
+        {/* <Redirect to="/home" /> */}
 
       </Switch>
       {/* <Menu dishes ={this.state.dishes} onClick = { (dishId) => this.OnDishSelect(dishId)} /> */}
